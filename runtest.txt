@@ -1,0 +1,45 @@
+
+GMS1
+
+W1 = test:first(1, gms1, 1000),test:add(2, gms1, W1, 1000),test:add(3, gms1, W1, 1000).
+
+
+When the leader is killed everything freezes. 
+
+
+
+
+
+
+GMS2
+
+W1 = test:first(1, gms2, 1000),test:add(2, gms2, W1, 1000),test:add(3, gms2, W1, 1000),test:add(4, gms2, W1, 1000),test:add(5, gms2, W1, 1000).
+
+The crashes are well handled. After each crash the workers become out of sync though 
+
+
+
+
+
+GMS3
+W1 = test:first(1, gms3, 1000),test:add(2, gms3, W1, 1000),test:add(3, gms3, W1, 1000),test:add(4, gms3, W1, 1000),test:add(5, gms3, W1, 1000).
+
+
+The workers are synced after the leader dies 
+
+
+
+f(). to clear
+
+
+
+
+
+
+Optional Part: 
+
+1. To guarantee that the messages are delivered we can have the slaves sending back a confirmation message to ensure that they have gotten the message. And if they didn't we can send the message again. 
+
+2. If the Erlang failure detector is not perfect and do not know about a leader node crashing, we can implement a timer that waits a limited amount of time for a leader to send something. OR by having the slaves sending a message to the leader to ensure that the leader is still alive. 
+
+3. Not undrestanding the question 
